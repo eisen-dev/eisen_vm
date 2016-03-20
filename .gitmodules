@@ -1,0 +1,6 @@
+[submodule "eisen_engine"]
+	path = eisen_engine
+	url = git@github.com:eisen-dev/eisen_engine.git
+[submodule "eisen_front"]
+	path = eisen_front
+	url = git@github.com:eisen-dev/eisen_front.git

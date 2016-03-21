@@ -1,7 +1,7 @@
 echo "updating..."
 sudo apt-get update
 echo "installing needed packages"
-sudo apt-get install -y python-pip python-crypto python-dev rabbitmq-server sshpass python-mysqldb
+sudo apt-get install -y python-pip python-crypto python-dev rabbitmq-server sshpass python-mysqldb dos2unix
 sudo pip install -r /vagrant/eisen_engine/requirements.txt
 echo "adding localhost to /etc/ansible/hosts"
 mkdir -p /etc/ansible/group_vars/
@@ -14,7 +14,8 @@ mkdir /root/.ssh/
 sudo touch /root/.ssh/config
 sudo echo -e "Host *\n StrictHostKeyChecking no" > /root/.ssh/config
 echo "setting init"
-cp /vagrant/eisen_engine/init/eisen-* /etc/init.d/
+cp /vagrant/init/eisen-* /etc/init.d/
+dos2unix /etc/init.d/eisen-*
 chmod +x /etc/init.d/eisen-*
 echo "start init"
 service eisen-engine start

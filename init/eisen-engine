@@ -9,7 +9,7 @@
 # Description:       Enable service provided by daemon.
 ### END INIT INFO
 
-dir="/vagrant/eisen_celery"
+dir="/vagrant/eisen_engine"
 cmd="python bin/api.py"
 user="vagrant"
 

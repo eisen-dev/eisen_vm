@@ -20,3 +20,5 @@ chmod +x /etc/init.d/eisen-*
 echo "start init"
 service eisen-engine start
 service eisen-celery start
+update-rc.d eisen-engine defaults
+update-rc.d eisen-celery defaults

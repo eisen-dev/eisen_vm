@@ -13,11 +13,12 @@ echo -e "\n--- Updating packages list ---\n"
 apt-get -qq update
 
 echo -e "\n--- Install base packages ---\n"
-apt-get -y install vim curl build-essential python-software-properties git > /dev/null 2>&1
+apt-get -y install vim curl build-essential python-software-properties git rubygems > /dev/null 2>&1 
 
 echo -e "\n--- Add some repos to update our distro ---\n"
-add-apt-repository ppa:ondrej/php5-5.6 > /dev/null 2>&1
-add-apt-repository ppa:chris-lea/node.js > /dev/null 2>&1
+add-apt-repository ppa:ondrej/apache2 > /dev/null
+add-apt-repository ppa:ondrej/php > /dev/null 
+add-apt-repository ppa:chris-lea/node.js > /dev/null
 
 echo -e "\n--- Updating packages list ---\n"
 apt-get -qq update
@@ -25,12 +26,7 @@ apt-get -qq update
 echo -e "\n--- Install MySQL specific packages and settings ---\n"
 echo "mysql-server mysql-server/root_password password $DBPASSWD" | debconf-set-selections
 echo "mysql-server mysql-server/root_password_again password $DBPASSWD" | debconf-set-selections
-echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections
-echo "phpmyadmin phpmyadmin/app-password-confirm password $DBPASSWD" | debconf-set-selections
-echo "phpmyadmin phpmyadmin/mysql/admin-pass password $DBPASSWD" | debconf-set-selections
-echo "phpmyadmin phpmyadmin/mysql/app-pass password $DBPASSWD" | debconf-set-selections
-echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none" | debconf-set-selections
-apt-get -y install mysql-server-5.5 phpmyadmin > /dev/null 2>&1
+apt-get -y install mysql-server-5.5 > /dev/null 2>&1
 
 echo -e "\n--- Setting up our MySQL user and db ---\n"
 mysql -uroot -p$DBPASSWD -e "CREATE DATABASE $DBNAME"
@@ -38,7 +34,7 @@ mysql -uroot -p$DBPASSWD -e "grant all privileges on *.* to '$DBUSER'@'%' identi
 cp -f /vagrant/eisen_front/vagrant/my.cnf /etc/mysql/my.cnf
 
 echo -e "\n--- Installing PHP-specific packages ---\n"
-apt-get -y install php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt php5-mysql php-apc > /dev/null 2>&1
+apt-get -y install php5.6 apache2 libapache2-mod-php5.6 php5.6-curl php5.6-gd php5.6-mcrypt php5.6-mysql php-apc > /dev/null 2>&1
 
 echo -e "\n--- Enabling mod-rewrite ---\n"
 a2enmod rewrite > /dev/null 2>&1

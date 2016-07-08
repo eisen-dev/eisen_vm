@@ -1,7 +1,7 @@
 echo "updating..."
 sudo apt-get update
 echo "installing needed packages"
-sudo apt-get install -y python-pip python-crypto python-dev rabbitmq-server sshpass python-mysqldb dos2unix
+sudo apt-get install -y python-pip python-crypto python-dev rabbitmq-server sshpass python-mysqldb dos2unix build-essential libssl-dev libffi-dev python-dev > /dev/null 2>&1
 sudo pip install -r /vagrant/eisen_engine/requirements.txt
 echo "adding localhost to /etc/ansible/hosts"
 mkdir -p /etc/ansible/group_vars/
